@@ -10,6 +10,7 @@ import UIKit
 final class AppCoordinator {
     private let window: UIWindow
     private let diContainer: AppDIContainer
+    private var homeCoordinator: HomeCoordinator?  // ✅ RETAIN IT
 
     init(window: UIWindow, diContainer: AppDIContainer) {
         self.window = window
@@ -17,7 +18,8 @@ final class AppCoordinator {
     }
 
     func start() {
-        let homeCoordinator = diContainer.makeHomeCoordinator(window: window)
-        homeCoordinator.start()
+        let coordinator = diContainer.makeHomeCoordinator(window: window)
+        homeCoordinator = coordinator
+        coordinator.start()
     }
 }

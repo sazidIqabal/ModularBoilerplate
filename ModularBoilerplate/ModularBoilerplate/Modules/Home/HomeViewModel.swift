@@ -11,4 +11,6 @@ final class HomeViewModel {
     var welcomeText: String {
         return "Hello from Home!"
     }
+
+    var onLoginTap: (() -> Void)?  // Add this closure for navigation
 }

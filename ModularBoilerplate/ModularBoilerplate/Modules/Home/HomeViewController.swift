@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -33,11 +34,24 @@ final class HomeViewController: UIViewController {
         label.font = .systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
 
+        let button = UIButton(type: .system)
+        button.setTitle("Go to Login", for: .normal)
+        button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
         view.addSubview(label)
+        view.addSubview(button)
 
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+
+            button.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20),
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+
+    @objc private func loginTapped() {
+        viewModel.onLoginTap?()
     }
 }
